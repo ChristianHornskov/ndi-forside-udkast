@@ -1,0 +1,148 @@
+/* Sammenligningssiden (ramme) + version 2 og 3.
+   Version 1 har sin egen, scopede CSS i jesper.css. Alle regler her er klassebaserede,
+   så de ikke rammer Jespers markup. */
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:#050a0e;color:#e6e8ed;font:400 16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,"DejaVu Sans",Arial,sans-serif}
+[hidden]{display:none!important}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.shell-head :focus-visible,.v-simple :focus-visible,.v-combo :focus-visible,.shell-skip:focus-visible{outline:3px solid #f5ee9e;outline-offset:3px}
+
+/* ---------- Ramme ---------- */
+.shell-skip{position:absolute;left:12px;top:-60px;z-index:50;padding:10px 14px;background:#f5ee9e;color:#0b1a20;font-weight:700;border-radius:6px}
+.shell-skip:focus{top:10px}
+.draft-banner{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:center;gap:4px 14px;padding:12px 16px;background:#ffd166;color:#1d1400;text-align:center;font-size:14px;border-bottom:3px solid #c99a2e}
+.draft-banner strong{font-size:17px;letter-spacing:.02em;text-transform:uppercase}
+.shell-head{max-width:1120px;margin:0 auto;padding:20px 16px 24px}
+.shell-kicker{margin:0;color:#89aeb4;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+.shell-title{margin:4px 0 16px;font-size:clamp(20px,3vw,26px);font-weight:700;line-height:1.25}
+.switcher{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.switch-btn{display:flex;flex-direction:column;align-items:flex-start;gap:2px;min-height:58px;padding:10px 14px;border:2px solid #4a6870;border-radius:10px;background:#0f1f25;color:#e6e8ed;font:inherit;text-align:left;cursor:pointer;transition:background .15s,border-color .15s}
+.switch-btn:hover{border-color:#9be3dc;background:#16303a}
+.switch-btn[aria-pressed="true"]{background:#9be3dc;border-color:#9be3dc;color:#06171c}
+.switch-num{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;opacity:.85}
+.switch-name{font-size:16px;font-weight:700;line-height:1.2}
+.version-desc p{margin:16px 0 0;padding:12px 16px;border-left:4px solid #9be3dc;background:#10252d;border-radius:0 8px 8px 0;color:#cfe0e3;font-size:15px;line-height:1.55}
+.version-desc strong{color:#fff}
+#versioner:focus{outline:none}
+
+/* ---------- Version 2 + 3: fælles ---------- */
+.v-simple,.v-combo{background:#0b1a20;padding:24px 12px 56px}
+.s-card{max-width:1000px;margin:0 auto;padding:clamp(20px,6vw,64px) clamp(18px,7vw,70px);background:#10252d;border-radius:18px;color:#fff}
+.s-eyebrow{margin:0 0 8px;color:#9be3dc;font-size:15px;font-weight:700;letter-spacing:.04em}
+.s-title{margin:0;font-size:clamp(28px,4.4vw,36px);font-weight:700;line-height:1.15}
+.s-lede{margin:12px 0 0;color:#cfe0e3;font-size:clamp(16px,1.9vw,18px);line-height:1.5}
+.s-tiles{list-style:none;margin:28px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.s-tile{display:flex;flex-direction:column;gap:12px;padding:18px 22px 20px;background:#0d1f26;border:2px solid #2b4a54;border-radius:14px}
+.s-tile-label{font-size:15px;font-weight:700}
+.s-tile-value{font-size:clamp(32px,4.2vw,42px);font-weight:700;line-height:1.05;font-variant-numeric:tabular-nums;white-space:nowrap}
+.s-tile-value.pos{color:#9be3dc}
+.s-tile-value.neg{color:#ffbd8a}
+.s-tile-sub{color:#cfe0e3;font-size:15px}
+.s-warning-row{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 48px;margin:24px 0 0;font-size:17px}
+.s-kid{color:#9be3dc;font-weight:700;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:6px}
+.s-kid:hover{color:#c4f2ed}
+.s-h2{margin:44px 0 6px;font-size:clamp(21px,2.6vw,24px);font-weight:700;line-height:1.25}
+.s-sub{margin:0;color:#cfe0e3;font-size:15px}
+.s-foot{margin:18px 0 0;color:#cfe0e3;font-size:15px}
+.s-cta-row{display:flex;flex-wrap:wrap;align-items:center;gap:14px 28px;margin-top:28px}
+.s-cta{flex:0 1 640px;display:block;padding:17px 22px;background:#9be3dc;color:#0b1a20;border-radius:12px;font-size:17px;font-weight:700;text-decoration:none;line-height:1.35}
+.s-cta:hover{background:#c4f2ed}
+.s-updated{color:#cfe0e3;font-size:14px}
+.s-legal{margin:14px 0 0;color:#cfe0e3;font-size:13px;line-height:1.55}
+
+/* ---------- Månedskalender (to flade farver) ---------- */
+.cal{margin-top:20px}
+.cal-row{display:grid;grid-template-columns:118px repeat(12,minmax(0,1fr));gap:6px;align-items:center;margin-bottom:8px}
+.cal-colhead{text-align:center;color:#cfe0e3;font-size:15px;font-weight:700}
+.cal-year strong{display:block;font-size:19px;line-height:1.2}
+.cal-year small{display:block;color:#cfe0e3;font-size:13px;line-height:1.3}
+.cal-cell{display:flex;align-items:center;justify-content:center;height:50px;border-radius:8px;color:#fff;font-size:clamp(12px,1.35vw,15px);font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+.cal-cell.pos{background:#1f7a5a}
+.cal-cell.neg{background:#a8433a}
+.cal-m{display:none}
+@media (max-width:820px){
+  .cal-head{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+  .cal-row{grid-template-columns:repeat(6,minmax(0,1fr));gap:5px;margin-bottom:18px}
+  .cal-year{grid-column:1/-1;display:flex;align-items:baseline;gap:10px;margin-bottom:2px}
+  .cal-cell{flex-direction:column;gap:1px;height:auto;min-height:50px;padding:5px 0;font-size:14px}
+  .cal-m{display:block;font-size:11px;font-weight:400}
+  .cal-cell.empty{border:1px dashed #2b4a54;color:#8fa9b0}
+}
+
+/* ---------- Version 3 ---------- */
+.c-intro{padding-bottom:28px;border-bottom:1px solid #2b4a54}
+.c-intro + .s-h2{margin-top:32px}
+.c-tiles .s-tile-value{color:#fff}
+.c-warning{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:10px 32px;margin-top:20px;padding:14px 18px;background:#0d1f26;border:1px solid #2b4a54;border-radius:10px;font-size:16px}
+.c-warning p{margin:0;flex:1 1 360px}
+.review-note{margin-top:16px;padding:12px 16px;border:2px dashed #f5ee9e;border-radius:10px;background:#f5ee9e0d;color:#f1ebb8;font-size:14px;line-height:1.55}
+.review-note p{margin:0}
+.review-note strong{color:#f5ee9e}
+.c-h3{margin:36px 0 6px;font-size:19px;font-weight:700}
+.c-chart{margin-top:28px}
+.c-chart-toggle{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px;width:100%;padding:12px 16px;background:transparent;border:1.5px solid #2b4a54;border-radius:10px;color:#cfe0e3;font:inherit;text-align:left;cursor:pointer}
+.c-chart-toggle:hover{border-color:#89aeb4;background:#0d1f26}
+.c-chart-toggle-label{font-weight:700;color:#fff}
+.c-chart-toggle-label::before{content:"▸";display:inline-block;margin-right:8px;transition:transform .15s}
+.c-chart-toggle[aria-expanded="true"] .c-chart-toggle-label::before{transform:rotate(90deg)}
+.c-chart-toggle-sub{font-size:13px;color:#8fa9b0}
+.c-chart-region{padding:16px 0 0}
+.c-sample-badge{display:inline-flex;flex-wrap:wrap;align-items:baseline;gap:4px 8px;margin:0 0 12px;padding:6px 12px;border:1.5px solid #f5ee9e;border-radius:6px;color:#f5ee9e;font-size:13px;font-weight:700;letter-spacing:.03em}
+.c-sample-badge small{font-weight:400;color:#e4dcaa;font-size:12px;letter-spacing:0}
+.c-legend{display:flex;flex-wrap:wrap;gap:8px 24px;margin-bottom:8px;font-size:14px;color:#cfe0e3}
+.c-leg{padding-left:10px;border-left:3px solid}
+.c-leg-fund{border-color:#9ecfd6}.c-leg-fund b{color:#9ecfd6}
+.c-leg-bench{border-color:#f5ee9e}.c-leg-bench b{color:#f5ee9e}
+.c-chart-box{position:relative;height:clamp(200px,38vw,300px);opacity:.9}
+.c-chart-box svg{display:block;width:100%;height:100%;overflow:visible}
+.c-chart-box text{fill:#8fa9b0;font-size:11px;font-family:inherit}
+.c-grid{stroke:#405860;stroke-width:.7;opacity:.6}
+.c-zero{stroke:#78949b;stroke-width:.8;stroke-dasharray:4 4}
+.c-fund{fill:none;stroke:#9ecfd6;stroke-width:2;stroke-linejoin:round}
+.c-bench{fill:none;stroke:#f5ee9e;stroke-width:1.6;stroke-dasharray:4 4;opacity:.85}
+.c-chart-box .c-end{font-weight:700;font-size:12px}
+.c-chart-box .c-end-fund{fill:#9ecfd6}
+.c-chart-box .c-end-bench{fill:#f5ee9e}
+.c-watermark{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none;font-size:clamp(26px,7vw,64px);font-weight:700;letter-spacing:.12em;color:#f5ee9e17;transform:rotate(-8deg);user-select:none}
+.c-chart-note{margin:12px 0 0;color:#aac0c7;font-size:13px;line-height:1.55}
+.c-buy-title{margin-top:48px;padding-top:32px;border-top:1px solid #2b4a54}
+.c-classes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:18px}
+.c-class{display:flex;flex-direction:column;gap:8px;min-width:0;padding:16px;background:transparent;border:2px solid #8ba8b1;border-radius:10px;color:#e6e8ed;font:inherit;text-align:left;cursor:pointer}
+.c-class:hover{border-color:#9ecfd6;background:#173039}
+.c-class.selected{background:#213e46}
+.c-class-title{font-size:17px;font-weight:700;line-height:1.25}
+.c-check{display:none;margin-right:6px;color:#f5ee9e}
+.c-class.selected .c-check{display:inline}
+.c-class-sub{color:#aac0c7;font-size:14px}
+.c-class-desc{color:#aac0c7;font-size:14px;line-height:1.5}
+.c-class-isin{margin-top:auto;padding-top:10px;border-top:1px solid #829da033;font-size:14px;color:#c2dbe0}
+.c-class-isin b,.c-isin{letter-spacing:.04em;font-variant-numeric:tabular-nums;color:#fff}
+.c-where{margin-top:16px;padding:18px 20px;background:#0d1f26;border:1px solid #2b4a54;border-radius:12px}
+.c-where .c-h3{margin-top:0}
+.c-where p{margin:8px 0 0;color:#cfe0e3;font-size:15px;line-height:1.55}
+.c-steps{margin:12px 0 0;padding-left:22px;color:#cfe0e3;font-size:15px;line-height:1.55}
+.c-steps li+li{margin-top:6px}
+.c-steps strong{color:#fff}
+.c-docs a{color:#9be3dc;font-weight:700;text-decoration:underline;text-underline-offset:4px;overflow-wrap:anywhere}
+.c-class-note{font-style:italic}
+.c-cta-row{margin-top:36px}
+
+/* ---------- Responsivt ---------- */
+@media (max-width:860px){
+  .s-tiles{grid-template-columns:1fr;gap:12px}
+  .s-tile{gap:6px}
+}
+@media (max-width:640px){
+  .switch-btn{padding:8px;min-height:54px}
+  .switch-num{font-size:11px;letter-spacing:.04em}
+  .switch-name{font-size:13px;overflow-wrap:anywhere}
+  .s-card{border-radius:14px}
+  .s-warning-row{font-size:16px}
+  .s-cta{flex:1 1 100%;font-size:16px}
+  .c-classes{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){
+  .switch-btn,.c-chart-toggle-label::before{transition:none}
+}
