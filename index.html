@@ -3,20 +3,15 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="robots" content="noindex, nofollow">
+  <meta name="robots" content="noindex">
   <meta name="theme-color" content="#050a0e">
-  <title>Udkast – forside for PMINDI: tre versioner</title>
+  <title>Forside for PMINDI: tre versioner</title>
   <link rel="icon" href="mark.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="jesper.css">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <a class="shell-skip" href="#versioner">Gå til indhold</a>
-
-  <div class="draft-banner" role="note">
-    <strong>Udkast – ikke offentliggjort</strong>
-    <span>Intern sammenligning af tre forsideversioner for PMINDI. Må ikke deles eller publiceres.</span>
-  </div>
 
   <header class="shell-head">
     <p class="shell-kicker">Forsideudkast · PMINDI</p>
@@ -27,9 +22,9 @@
       <button type="button" class="switch-btn" data-version="3" aria-pressed="false" aria-controls="version-3"><span class="switch-num">Version 3</span><span class="switch-name">Kombination</span></button>
     </div>
     <div class="version-desc" aria-live="polite">
-      <p data-desc="1"><strong>Om version 1.</strong> Jespers mockup gengivet tro mod originalen: produktoversigt, klassevælger med ISIN, interaktiv totalafkastgraf mod Nasdaq-100 og fire nøgletal. Siden giver meget information og mange valg på én gang. Grafen bygger på rekonstruerede data og er derfor mærket <em>Eksempeldata</em>.</p>
-      <p data-desc="2" hidden><strong>Om version 2.</strong> UX-reviewerens forenklede forside: tre store nøgletal, advarsel og PRIIP-KID-link, en tofarvet månedskalender og én knap videre. Den svarer hurtigt på „hvordan er det gået?“, men siger kun lidt om, hvad fonden er, og intet om, hvordan man køber. Tallene er de offentlige tal fra newdealinvest.dk/graf-v2, aflæst 14. okt. 2026.</p>
-      <p data-desc="3" hidden><strong>Om version 3.</strong> Kombinationen følger de spørgsmål, en ny besøgende stiller: hvad er fonden, hvordan har den klaret sig, og hvordan køber man den. Nøgletal og månedskalender er hovedoverblikket, og −10,1 % vises lige så tydeligt som de positive tal; grafen er nedtonet bag en knap og mærket eksempeldata. Jespers klassevælger med ISIN er bevaret, og der er én tydelig knap videre.</p>
+      <p data-desc="1"><strong>Om version 1.</strong> Jespers mockup: produktoversigt, klassevælger med ISIN, interaktiv totalafkastgraf mod Nasdaq-100 og fire nøgletal. Siden giver meget information og mange valg på én gang.</p>
+      <p data-desc="2" hidden><strong>Om version 2.</strong> UX-reviewerens forenklede forside: tre store nøgletal, advarsel og PRIIP-KID-link, en tofarvet månedskalender og én knap videre. Den svarer hurtigt på „hvordan er det gået?“, men siger kun lidt om, hvad fonden er, og intet om, hvordan man køber.</p>
+      <p data-desc="3" hidden><strong>Om version 3.</strong> Bygget på Jespers design – samme layout, graf og klassevælger med ISIN – men med de tre vigtigste nøgletal øverst, hvor −10,1 % står lige så tydeligt som de positive tal, og advarsel og PRIIP-KID lige ved tallene. Grafen er fuldt synlig med færre periodeknapper, og under den viser en rolig tabel afkastet måned for måned. Én tydelig knap fører videre.</p>
     </div>
   </header>
 
@@ -86,10 +81,9 @@
             </section>
 
             <section class="chart-panel panel" id="udvikling" aria-labelledby="chart-title">
-              <p class="j-sample-badge" id="sample-badge">EKSEMPELDATA <small>Rekonstrueret fra mockup · ikke verificeret afkasthistorik</small></p>
               <div class="chart-heading">
                 <div><p class="eyebrow"><span id="eyebrow-fund">PMINDI</span> · UDVIKLING OVER TID</p><h2 id="chart-title">Totalafkast over tid</h2></div>
-                <div class="chart-meta"><span id="updated">Senest opdateret pr. 13. okt. 2026</span><button class="data-source" type="button" data-dialog="data"><span class="status-dot"></span><span id="source-label">Eksempeldata fra mockup · ikke live</span><span aria-hidden="true">ⓘ</span></button></div>
+                <div class="chart-meta"><span id="updated">Senest opdateret pr. 13. okt. 2026</span></div>
               </div>
               <div class="chart-toolbar">
                 <div class="segmented" role="group" aria-label="Visning">
@@ -110,8 +104,7 @@
               </div>
               <p class="chart-context" id="chart-context" hidden></p>
               <div class="chart-container" id="chart-container">
-                <svg id="performance-chart" viewBox="0 0 1000 410" role="img" aria-labelledby="svg-title svg-description"><title id="svg-title">Totalafkast for PMINDI og Nasdaq-100</title><desc id="svg-description">Interaktiv graf med eksempeldata. Brug venstre og højre piletast til at udforske datoer, eller træk over grafen.</desc></svg>
-                <div class="j-watermark" id="sample-watermark" aria-hidden="true">EKSEMPELDATA</div>
+                <svg id="performance-chart" viewBox="0 0 1000 410" role="img" aria-labelledby="svg-title svg-description"><title id="svg-title">Totalafkast for PMINDI og Nasdaq-100</title><desc id="svg-description">Interaktiv graf. Brug venstre og højre piletast til at udforske datoer, eller træk over grafen.</desc></svg>
                 <div class="chart-loading" id="chart-loading">Indlæser graf…</div>
                 <div class="chart-tooltip" id="chart-tooltip" role="status" hidden></div>
               </div>
@@ -176,96 +169,102 @@
       </div>
     </section>
 
-    <!-- ============ VERSION 3 – KOMBINATION ============ -->
-    <section id="version-3" class="version v-combo" aria-labelledby="v3-title" hidden>
-      <div class="s-card c-card">
+    <!-- ============ VERSION 3 – KOMBINATION (Jespers design som base) ============ -->
+    <section id="version-3" class="version v-jesper v-combo3" aria-labelledby="v3-title" hidden>
+      <header class="site-header" id="c3-top">
+        <a class="brand" href="#c3-top" aria-label="NewDeal Invest – hjem"><img src="mark.svg" width="34" height="27" alt=""><span>NewDeal Invest</span></a>
+        <nav aria-label="Hovednavigation (version 3)">
+          <a href="#c3-top" class="nav-home c3-nav-wide">Hjem</a>
+          <a href="#c3-klasse" class="c3-nav-wide">Porteføljer</a>
+          <a href="https://www.newdealinvest.dk/folgmed">Følg med</a>
+          <a href="https://www.newdealinvest.dk/risici">Risici</a>
+          <a class="outline-button nav-invest" href="#c3-klasse">Sådan investerer du</a>
+        </nav>
+      </header>
 
-        <!-- 1. Hvad er fonden? -->
-        <div class="c-intro">
-          <p class="s-eyebrow">NEWDEAL INVEST · DANSK INVESTERINGSFORENING</p>
-          <h1 class="s-title" id="v3-title">PMINDI</h1>
-          <p class="s-lede">Aktivt forvaltet dansk investeringsforening med bred eksponering mod teknologiaktier globalt. Ingen minimumsinvestering. Fås i to klasser: udbyttebetalende (PMINDI) og akkumulerende (PMINDIAKK).</p>
-        </div>
+      <div class="j-main c3-main">
+        <h1 id="v3-title">PMINDI</h1>
+        <div class="page-content">
+          <p class="c3-lede"><strong>PMINDI</strong> er en aktivt forvaltet dansk investeringsforening med bred eksponering mod teknologiaktier globalt. Fås som udbyttebetalende (PMINDI) og akkumulerende (PMINDIAKK). Ingen minimumsinvestering.</p>
 
-        <!-- 2. Hvordan har den klaret sig? -->
-        <h2 class="s-h2" id="v3-perf-title">Sådan er det gået</h2>
-        <p class="s-sub">PMINDI (udbyttebetalende). Totalafkast i DKK med geninvesteret udbytte, efter løbende omkostninger, før skat.</p>
-
-        <ul class="s-tiles c-tiles" aria-label="Nøgletal for PMINDI">
-          <li class="s-tile"><span class="s-tile-label">Samlet afkast siden start</span><strong class="s-tile-value">+114,6&nbsp;%</strong><span class="s-tile-sub">22. sep. 2023 – 13. okt. 2026</span></li>
-          <li class="s-tile"><span class="s-tile-label">Gennemsnitligt årligt afkast</span><strong class="s-tile-value">+28,4&nbsp;%</strong><span class="s-tile-sub">pr. år siden start (CAGR)</span></li>
-          <li class="s-tile"><span class="s-tile-label">Seneste 12 måneder</span><strong class="s-tile-value">−10,1&nbsp;%</strong><span class="s-tile-sub">til 13. okt. 2026</span></li>
-        </ul>
-
-        <div class="c-warning" role="note">
-          <p><strong>Historisk afkast er ikke en pålidelig indikator for fremtidigt afkast.</strong> Du kan tabe en del af eller hele din investering.</p>
-          <a class="s-kid" href="https://node-api.fundmarket.dk/funds/documents/priip_ipm140b" target="_blank" rel="noopener noreferrer">Læs PRIIP-KID for PMINDI <span aria-hidden="true">↗</span><span class="sr-only">(åbner i ny fane)</span></a>
-        </div>
-
-        <aside class="review-note" aria-label="Note til review">
-          <p><strong>Til afklaring – compliance:</strong> Det er et compliance-spørgsmål, om gennemsnitligt årligt afkast (CAGR) beregnet over ca. 3 år må bruges som overskriftstal på forsiden. Afklares før offentliggørelse. <em>(Noten er ikke en del af den endelige side.)</em></p>
-        </aside>
-
-        <h3 class="c-h3" id="v3-cal-title">Afkast måned for måned</h3>
-        <p class="s-sub">Totalafkast i % for PMINDI, med geninvesteret udbytte, efter løbende omkostninger, før skat.</p>
-        <div class="cal" data-calendar aria-labelledby="v3-cal-title"></div>
-        <p class="s-foot">* Uafsluttet måned. Tomme felter er ikke 0 %, fonden startede 22. sep. 2023. Historisk afkast er ikke en pålidelig indikator for fremtidigt afkast.</p>
-
-        <!-- Nedtonet graf -->
-        <div class="c-chart">
-          <button type="button" class="c-chart-toggle" id="c3-chart-toggle" aria-expanded="false" aria-controls="c3-chart-region">
-            <span class="c-chart-toggle-label">Vis graf</span> <span class="c-chart-toggle-sub">Udvikling over tid mod Nasdaq-100 · eksempeldata</span>
-          </button>
-          <div class="c-chart-region" id="c3-chart-region" hidden>
-            <p class="c-sample-badge">EKSEMPELDATA <small>Kurven er rekonstrueret fra Jespers mockup og er ikke verificeret afkasthistorik.</small></p>
-            <div class="c-legend" aria-hidden="true">
-              <span class="c-leg c-leg-fund">PMINDI <b id="c3-fund-end">+114,6 %</b></span>
-              <span class="c-leg c-leg-bench">Nasdaq-100 <b id="c3-bench-end">+102,9 %</b></span>
+          <!-- (a)+(b) Nøgletal med advarsel og PRIIP-KID direkte ved tallene -->
+          <section class="metrics-panel panel c3-metrics" aria-labelledby="c3-metrics-title">
+            <h2 id="c3-metrics-title" class="c3-panel-title">Sådan er det gået <span>· PMINDI</span></h2>
+            <div class="metrics-grid">
+              <div class="metric"><span class="metric-label">Samlet afkast siden start</span><strong>+114,6&nbsp;%</strong><small>22. sep. 2023 – 13. okt. 2026</small></div>
+              <div class="metric"><span class="metric-label">Gennemsnitligt årligt afkast</span><strong>+28,4&nbsp;%</strong><small>pr. år siden start (CAGR)</small></div>
+              <div class="metric"><span class="metric-label">Seneste 12 måneder</span><strong>−10,1&nbsp;%</strong><small>til 13. okt. 2026</small></div>
             </div>
-            <div class="c-chart-box" id="c3-chart-box">
-              <svg id="c3-chart" role="img" aria-labelledby="c3-chart-title c3-chart-desc"><title id="c3-chart-title">Totalafkast for PMINDI og Nasdaq-100 siden start, eksempeldata</title><desc id="c3-chart-desc">Eksempeldata rekonstrueret fra mockup, ikke verificeret. PMINDI ender på +114,6 % og Nasdaq-100 på +102,9 % pr. 13. okt. 2026.</desc></svg>
-              <div class="c-watermark" aria-hidden="true">EKSEMPELDATA</div>
+            <p class="c3-warning"><strong>Historisk afkast er ikke en garanti for fremtidigt afkast.</strong> <a href="https://node-api.fundmarket.dk/funds/documents/priip_ipm140b" target="_blank" rel="noopener noreferrer">Læs PRIIP-KID <span aria-hidden="true">↗</span><span class="sr-only">(åbner i ny fane)</span></a></p>
+          </section>
+
+          <!-- (c) Graf, fuldt synlig -->
+          <section class="chart-panel panel" aria-labelledby="c3-chart-title">
+            <div class="chart-heading">
+              <div><p class="eyebrow">PMINDI · UDVIKLING OVER TID</p><h2 id="c3-chart-title">Totalafkast over tid</h2></div>
+              <div class="chart-meta"><span>Senest opdateret pr. 13. okt. 2026</span></div>
             </div>
-            <p class="c-chart-note"><strong>Historisk afkast er ikke en pålidelig indikator for fremtidigt afkast.</strong> Fonden har ikke et benchmark. Nasdaq-100 vises som sammenligning, men har en anden sammensætning og risiko. Begge i DKK med geninvesteret udbytte.</p>
-          </div>
-        </div>
+            <div class="chart-toolbar">
+              <div class="segmented periods c3-periods" role="group" aria-label="Vælg periode">
+                <button type="button" class="outline-button small-button chart-control" data-c3-period="ytd" aria-pressed="false">År til dato</button>
+                <button type="button" class="outline-button small-button chart-control" data-c3-period="1y" aria-pressed="false">1 år</button>
+                <button type="button" class="outline-button small-button chart-control active" data-c3-period="all" aria-pressed="true">Siden start</button>
+              </div>
+            </div>
+            <div class="chart-legends" aria-live="polite">
+              <div class="legend fund-legend"><span>PMINDI</span><strong id="c3-fund-return">+114,6 %</strong></div>
+              <button class="legend benchmark-legend" id="c3-toggle-benchmark" type="button" aria-pressed="true" title="Vis eller skjul Nasdaq-100"><span>Nasdaq-100 · pr. 13. okt. 2026</span><strong id="c3-benchmark-return">+102,9 %</strong></button>
+            </div>
+            <div class="chart-container" id="c3-chart-container">
+              <svg id="c3-chart" viewBox="0 0 1000 410" role="img" aria-labelledby="c3-svg-title c3-svg-desc"><title id="c3-svg-title">Totalafkast for PMINDI og Nasdaq-100</title><desc id="c3-svg-desc">Graf over totalafkast. Brug datovælgeren efter grafen til at læse hvert datapunkt.</desc></svg>
+              <div class="chart-tooltip" id="c3-tooltip" role="status" hidden></div>
+            </div>
+            <input id="c3-slider" class="chart-slider" type="range" min="0" max="1" value="0" aria-label="Udforsk datoer i grafen">
+            <p class="chart-readout" id="c3-readout">Vælg et punkt på grafen for at se afkastet.</p>
+            <div class="chart-explanation">
+              <p>Totalafkast er investeringens samlede afkast, inklusive ændringen i andelenes værdi og eventuelle udlodninger, som forudsættes geninvesteret. Afkastet er efter fondens løbende omkostninger, men før skat, egne handelsomkostninger og tillæg ved køb og salg. Alle tal er i DKK. <strong>Historisk afkast er ikke en pålidelig indikator for fremtidigt afkast.</strong> <a class="text-link inline" href="https://www.newdealinvest.dk/risici" target="_blank" rel="noopener noreferrer">Se yderligere risikoinformation.</a></p>
+              <p>Fonden har ikke et benchmark. Nasdaq-100 vises som en relevant sammenligning med store, ikke-finansielle Nasdaq-selskaber, men har en anden sammensætning og risiko. Begge afkast er i DKK med geninvesteret udbytte.</p>
+            </div>
+          </section>
 
-        <!-- 3. Hvordan køber man? -->
-        <h2 class="s-h2 c-buy-title" id="v3-buy-title">Sådan investerer du</h2>
-        <p class="s-sub">Fonden findes i to klasser med samme overordnede strategi. Valget afhænger blandt andet af depottype og skatteforhold.</p>
-        <div class="c-classes" role="group" aria-label="Andelsklasse">
-          <button type="button" class="c-class selected" data-c3-fund="PMINDI" aria-pressed="true">
-            <span class="c-class-title"><span class="c-check" aria-hidden="true">✓</span>PMINDI – udbyttebetalende</span>
-            <span class="c-class-sub">Udbytte udbetales til dig.</span>
-            <span class="c-class-desc">Typisk relevant for private med frie midler eller aktiesparekonto. Kan også bruges til pension, børneopsparing og selskaber. Ikke til VSO.</span>
-            <span class="c-class-isin">ISIN <b>DK0062499810</b></span>
-          </button>
-          <button type="button" class="c-class" data-c3-fund="PMINDIAKK" aria-pressed="false">
-            <span class="c-class-title"><span class="c-check" aria-hidden="true">✓</span>PMINDIAKK – akkumulerende</span>
-            <span class="c-class-sub">Afkastet bliver i fonden.</span>
-            <span class="c-class-desc">Typisk relevant for pension, VSO og selskaber, hvis du ønsker afkastet geninvesteret i fonden. Kan også bruges til børneopsparing og frie midler. Ikke til aktiesparekonto.</span>
-            <span class="c-class-isin">ISIN <b>DK0064642623</b></span>
-          </button>
-        </div>
+          <!-- (c) Rolig månedstabel under grafen -->
+          <section class="panel c3-cal-panel" aria-labelledby="c3-cal-title">
+            <h2 id="c3-cal-title" class="c3-panel-title">Afkast måned for måned</h2>
+            <p class="c3-sub">Totalafkast i % for PMINDI, med geninvesteret udbytte, efter løbende omkostninger, før skat.</p>
+            <div class="c3-cal-scroll" tabindex="0" role="region" aria-label="Tabel: afkast måned for måned. Kan rulles vandret.">
+              <table class="c3-cal" data-c3-calendar></table>
+            </div>
+            <p class="c3-foot">* Uafsluttet måned. Tomme felter er ikke 0 %, fonden startede 22. sep. 2023. Historisk afkast er ikke en garanti for fremtidigt afkast.</p>
+          </section>
 
-        <div class="c-where" aria-live="polite">
-          <h3 class="c-h3">Hvor kan man investere?</h3>
-          <p>Søg efter fonden dér, hvor du investerer – i din bank eller på din handelsplatform. Hvilke klasser og depottyper der kan vælges, afhænger af udbyderen.</p>
-          <ol class="c-steps">
-            <li><strong>Åbn din bank eller handelsplatform</strong> og gå til køb af værdipapirer.</li>
-            <li><strong>Søg på <span data-c3-code>PMINDI</span> eller ISIN <span class="c-isin" data-c3-isin>DK0062499810</span></strong> og kontrollér fondens navn og andelsklasse.</li>
-            <li><strong>Læs fondens dokumenter</strong> og tag stilling til risiko og omkostninger, inden du investerer. Du gennemfører selv handlen hos din udbyder.</li>
-          </ol>
-          <p class="c-docs"><a href="https://node-api.fundmarket.dk/funds/documents/priip_ipm140b" data-c3-docs target="_blank" rel="noopener noreferrer"><span data-c3-docs-label>Læs PRIIP-KID for PMINDI</span> <span aria-hidden="true">↗</span><span class="sr-only">(åbner i ny fane)</span></a></p>
-          <p class="c-class-note" data-c3-akk-note hidden>Afkasttallene ovenfor gælder PMINDI. PMINDIAKK er en særskilt klasse, og dens tal er ikke vist i dette udkast.</p>
-          <p class="s-legal">Generel information, ikke en personlig anbefaling eller skatterådgivning. Skattebehandlingen afhænger af din individuelle situation og kan ændres. Valget afhænger også af depotudbyderens muligheder.</p>
-        </div>
+          <!-- Hvordan køber man: Jespers klassevælger med ISIN -->
+          <section class="class-panel panel" id="c3-klasse" aria-labelledby="c3-class-heading">
+            <h2 id="c3-class-heading">Sådan investerer du – vælg din klasse</h2>
+            <div class="class-options" role="group" aria-label="Andelsklasse">
+              <button type="button" class="class-card selected" data-c3-fund="PMINDI" aria-pressed="true">
+                <span class="class-title"><span class="checkmark" aria-hidden="true">✓</span>PMINDI – udbyttebetalende</span>
+                <span class="class-subtitle">Udbytte udbetales til dig.</span>
+                <span class="class-description">Typisk relevant for private med frie midler eller aktiesparekonto. Kan også bruges til pension, børneopsparing og selskaber. Ikke til VSO.</span>
+                <span class="class-footer">Find dér, hvor du investerer: Søg på <b>PMINDI</b> eller ISIN <b>DK0062499810.</b></span>
+              </button>
+              <button type="button" class="class-card" data-c3-fund="PMINDIAKK" aria-pressed="false">
+                <span class="class-title"><span class="checkmark" aria-hidden="true">✓</span>PMINDIAKK – akkumulerende</span>
+                <span class="class-subtitle">Afkastet bliver i fonden.</span>
+                <span class="class-description">Typisk relevant for pension, VSO og selskaber, hvis du ønsker afkastet geninvesteret i fonden. Kan også bruges til børneopsparing og frie midler. Ikke til aktiesparekonto.</span>
+                <span class="class-footer">Find dér, hvor du investerer: Søg på <b>PMINDIAKK</b> eller ISIN <b>DK0064642623.</b></span>
+              </button>
+            </div>
+            <p class="c3-where">Søg på klassens navn eller ISIN i din bank eller på din handelsplatform, og kontrollér fondens navn og andelsklasse. Læs fondens dokumenter, inden du investerer.</p>
+            <p class="class-disclaimer">Generel information, ikke en personlig anbefaling eller skatterådgivning. Skattebehandlingen afhænger af din individuelle situation og kan ændres. Valget afhænger også af depotudbyderens muligheder. <a class="text-link inline" data-c3-docs href="https://fundmarket.dk/newdeal-invest-kl-n/" target="_blank" rel="noopener noreferrer">Se <span data-c3-docs-name>PMINDI</span> og dokumenterne hos Fundmarket.</a></p>
+          </section>
 
-        <div class="s-cta-row c-cta-row">
-          <a class="s-cta" href="https://www.newdealinvest.dk/">Se mere om fonden og gå på opdagelse i NDI's univers <span aria-hidden="true">→</span></a>
-          <span class="s-updated">Senest opdateret 13. okt. 2026</span>
+          <!-- (d) Én tydelig knap -->
+          <section class="insight-panel panel c3-cta-panel" aria-label="Mere om fonden">
+            <div><h2>Vil du vide mere?</h2><p>Selskaber, sektorer, analyser og nyheder fra NewDeal Invest.</p></div>
+            <a class="outline-button c3-cta" href="https://www.newdealinvest.dk/">Se mere om fonden og gå på opdagelse i NDI's univers <span aria-hidden="true">→</span></a>
+          </section>
+          <p class="c3-legal">Senest opdateret 13. okt. 2026 · Generel information, ikke investeringsrådgivning. Beløb i DKK.</p>
         </div>
-        <p class="s-legal">Generel information, ikke investeringsrådgivning. Beløb i DKK.</p>
       </div>
     </section>
   </main>

@@ -1,7 +1,7 @@
 /* Jespers mockup-CSS (src/styles.css), scopet med native CSS-nesting under .v-jesper,
    så den ikke påvirker de andre versioner. Ændringer i forhold til originalen:
    :root/html/body -> &, main -> .j-main, @font-face fjernet (skriftfilerne findes ikke i mockuppet;
-   originalens fallback Arial bruges). Tilføjelser til Eksempeldata-mærkning står nederst. */
+   originalens fallback Arial bruges). */
 body:has(.v-jesper dialog[open]){overflow:hidden}
 .v-jesper{
 &{color-scheme:dark;--bg:#050a0e;--panel:#11252c;--panel-light:#172c33;--selected:#213e46;--border:#2b3e45;--line:#30474f;--text:#e6e8ed;--muted:#aac0c7;--cyan:#9ecfd6;--brand:#89aeb4;--yellow:#f5ee9e;--focus:#f5ee9e;--radius:15px}
@@ -23,9 +23,4 @@ dialog{background:#12262c;border:1px solid #47616b;border-radius:16px;color:var(
 .chart-control{min-width:0;white-space:nowrap}
 .chart-control.active{background:var(--selected);color:var(--text)}
 @media(max-width:640px){.periods{flex-wrap:wrap}.periods .chart-control{flex:1 0 auto;padding-inline:7px}}
-
-/* Tilføjet til sammenligningssiden: tydelig mærkning af rekonstruerede data. */
-.j-sample-badge{display:inline-flex;align-items:center;gap:8px;margin:0 0 16px;padding:6px 12px;border:1.5px solid var(--yellow);border-radius:6px;color:var(--yellow);font-size:13px;font-weight:700;letter-spacing:.3px}
-.j-sample-badge small{font-weight:400;color:#e4dcaa;font-size:12px;letter-spacing:0}
-.j-watermark{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none;font-size:clamp(28px,7vw,80px);font-weight:700;letter-spacing:.12em;color:#f5ee9e14;transform:rotate(-8deg);user-select:none}
 }

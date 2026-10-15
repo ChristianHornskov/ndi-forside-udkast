@@ -3,7 +3,7 @@
    - klassisk script i stedet for ES-moduler (moduler kan ikke indlæses via file://)
    - data indlejret via data.js (window.NDI_DEMO) i stedet for fetch('./data.json')
    - alle opslag og klik-handlere er begrænset til #v-jesper, så de ikke rammer de andre versioner
-   - "Demodata" er omdøbt til "Eksempeldata"; URL-opdatering er gjort fejltolerant (file://) */
+   - noter om demodata er fjernet (siden bruges kun til at se design); URL-opdatering er gjort fejltolerant (file://) */
 (function(){
 'use strict';
 const root=document.getElementById('v-jesper');
@@ -133,22 +133,17 @@ function update(){
   $('#eyebrow-fund').textContent=state.fund;
   $('#legend-fund').textContent=state.fund+(isPrice?(demoMode?' · indeks':' · DKK'):'');
   $('#chart-title').textContent=isPrice?'Kurs over tid':'Totalafkast over tid';
-  $('#updated').textContent=`${demoMode?'Dato i mockup':'Seneste kursdato'}: ${fmtDate(last.date)}`;
-  $('#source-label').textContent=demoMode?'Eksempeldata fra mockup · ikke live':'Egne data · gemt i denne browser';
-  $('#sample-badge').hidden=!demoMode;
-  $('#sample-watermark').hidden=!demoMode;
+  $('#updated').textContent=`Senest opdateret pr. ${fmtDate(last.date)}`;
   $$('[data-mode]').forEach(el=>{const active=el.dataset.mode===state.mode;el.classList.toggle('active',active);el.setAttribute('aria-pressed',String(active));});
   $$('[data-period]').forEach(el=>{const active=el.dataset.period===state.period;el.classList.toggle('active',active);el.setAttribute('aria-pressed',String(active));});
   $('#toggle-benchmark').hidden=isPrice;
   $('#toggle-benchmark').setAttribute('aria-pressed',String(state.benchmark));
   $('#benchmark-label').textContent=`Nasdaq-100 · pr. ${fmtDate(last.date)}`;
   const context=[];
-  if(demoMode&&state.fund==='PMINDIAKK')context.push('PMINDIAKK vises med mockuppets eksempelkurve, ikke klassens faktiske historik.');
-  if(demoMode&&isPrice)context.push('Illustrativt kursindeks med start = 100. Faktiske kurser og udbytter er ikke tilsluttet.');
   if(!demoMode&&state.period!=='all'&&periodPoints(points(),state.period).length===points().length)context.push('Viser den tilgængelige historik i den valgte periode.');
   $('#chart-context').textContent=context.join(' ');$('#chart-context').hidden=!context.length;
   $('#mode-explanation').innerHTML=isPrice
-    ?`${demoMode?'Kursvisningen er et illustrativt indeks baseret på mockuppets kurve. Den viser ikke faktiske andelskurser.':'Kursen viser andelens værdi i DKK på de indlæste datoer. Udbetalt udbytte indgår ikke i kursen.'} Vælg Totalafkast for at se udviklingen med geninvesteret udbytte. <strong>Historisk afkast er ikke en pålidelig indikator for fremtidigt afkast.</strong> <button class="text-link inline" type="button" data-dialog="risk">Se yderligere risikoinformation.</button>`
+    ?`${demoMode?'Kursen viser udviklingen i andelens værdi. Udbetalt udbytte indgår ikke i kursen.':'Kursen viser andelens værdi i DKK på de indlæste datoer. Udbetalt udbytte indgår ikke i kursen.'} Vælg Totalafkast for at se udviklingen med geninvesteret udbytte. <strong>Historisk afkast er ikke en pålidelig indikator for fremtidigt afkast.</strong> <button class="text-link inline" type="button" data-dialog="risk">Se yderligere risikoinformation.</button>`
     :defaultExplanation;
   updateMetrics();renderChart();
 }
@@ -187,7 +182,7 @@ function renderChart(){
   const x=p=>left+(timestamp(p.date)-t0)/Math.max(1,t1-t0)*plotWidth;
   const y=v=>top+(upper-v)/(upper-lower)*plotHeight;
   const svg=$('#performance-chart');svg.setAttribute('viewBox',`0 0 ${width} ${height}`);
-  const parts=[`<title id="svg-title">${isPrice?'Kurs':'Totalafkast'} for ${state.fund}${!isPrice&&state.benchmark?' og Nasdaq-100':''}</title><desc id="svg-description">${isDemo()?'Eksempeldata rekonstrueret fra mockup, ikke verificeret. ':''}Fra ${fmtDate(first.date)} til ${fmtDate(last.date)}. Brug datovælgeren efter grafen til at læse hvert datapunkt.</desc>`];
+  const parts=[`<title id="svg-title">${isPrice?'Kurs':'Totalafkast'} for ${state.fund}${!isPrice&&state.benchmark?' og Nasdaq-100':''}</title><desc id="svg-description">Fra ${fmtDate(first.date)} til ${fmtDate(last.date)}. Brug datovælgeren efter grafen til at læse hvert datapunkt.</desc>`];
   for(let tick=lower;tick<=upper+step/2;tick+=step){
     const pos=y(tick);const text=Number.isInteger(tick)?String(tick):number.format(tick);
     parts.push(`<line class="axis-grid ${Math.abs(tick)<.001?'zero-line':''}" x1="${left}" x2="${width-right}" y1="${pos}" y2="${pos}"/><text x="${left-10}" y="${pos+4}" text-anchor="end" style="font-size:${mobile?10:Math.max(10,width/78)}px">${text}${isPrice?'':' %'}</text>`);
@@ -259,14 +254,14 @@ if(typeof ResizeObserver!=='undefined')new ResizeObserver(()=>{cancelAnimationFr
 else window.addEventListener('resize',renderChart);
 
 function linkCard(url,title,subtitle){return `<a class="document-link" href="${url}" target="_blank" rel="noopener noreferrer"><span><strong>${title}</strong><small>${subtitle}</small></span><span class="arrow" aria-hidden="true">↗</span><span class="sr-only">Åbner i ny fane</span></a>`;}
-function sourceNote(){return isDemo()?`<div class="dialog-note warning"><strong>Eksempeldata – ikke verificeret afkasthistorik.</strong><br>Kurverne er rekonstrueret fra det leverede mockup. Nøgletallene er gengivet fra billedet. Mellemliggende datoer og værdier er omtrentlige; de beregnede periodeafkast kan derfor afvige fra de viste nøgletal. PMINDIAKK bruger den samme eksempelkurve. Kursvisning er et illustrativt indeks, ikke faktiske kurser.</div>`:`<div class="dialog-note"><strong>Egne data for ${state.fund}.</strong><br>${escape(dataset().name)} · ${points().length} observationer. Data er gemt i denne browser og er ikke verificeret af NewDeal Invest. Deling af et link overfører ikke disse data.</div>`;}
+function sourceNote(){return isDemo()?'':`<div class="dialog-note"><strong>Egne data for ${state.fund}.</strong><br>${escape(dataset().name)} · ${points().length} observationer. Data er gemt i denne browser og er ikke verificeret af NewDeal Invest. Deling af et link overfører ikke disse data.</div>`;}
 function documentCards(){return Object.entries(FUNDS).map(([key,f])=>linkCard(f.documents,key+' · '+f.type,'PRIIP-KID, prospekt og fondsinformation hos Fundmarket')).join('');}
-function dataPanel(){return `${sourceNote()}<h3>Indlæs dine egne kursdata</h3><p>Importér en CSV til <strong>${state.fund}</strong>. Graf og nøgletal genberegnes med det samme. Filen behandles lokalt og forlader ikke din browser.</p><p>Brug kolonnerne <code>date,total,benchmark,price</code>: dato som <code>2026-01-02</code>, totalafkastindeks med geninvesteret udbytte, Nasdaq-100-totalafkastindeks i DKK og andelskurs i DKK. Begge indeks skal være positive og konsistente gennem hele serien. Komma eller semikolon kan bruges som separator.</p><label class="field-label" for="csv-input">CSV til ${state.fund} · højst 2 MB</label><input class="file-input" type="file" id="csv-input" accept=".csv,text/csv"><p class="status-message" id="import-status" role="status"></p><div class="dialog-actions"><button type="button" class="outline-button" data-action="template">Hent CSV-skabelon ↓</button><button type="button" class="outline-button" data-action="export-all">Eksportér data ↓</button>${!isDemo()?'<button type="button" class="text-link" data-action="reset-data">Gendan mockuppets data</button>':''}</div>`;}
+function dataPanel(){return `${sourceNote()}<h3>Indlæs dine egne kursdata</h3><p>Importér en CSV til <strong>${state.fund}</strong>. Graf og nøgletal genberegnes med det samme. Filen behandles lokalt og forlader ikke din browser.</p><p>Brug kolonnerne <code>date,total,benchmark,price</code>: dato som <code>2026-01-02</code>, totalafkastindeks med geninvesteret udbytte, Nasdaq-100-totalafkastindeks i DKK og andelskurs i DKK. Begge indeks skal være positive og konsistente gennem hele serien. Komma eller semikolon kan bruges som separator.</p><label class="field-label" for="csv-input">CSV til ${state.fund} · højst 2 MB</label><input class="file-input" type="file" id="csv-input" accept=".csv,text/csv"><p class="status-message" id="import-status" role="status"></p><div class="dialog-actions"><button type="button" class="outline-button" data-action="template">Hent CSV-skabelon ↓</button><button type="button" class="outline-button" data-action="export-all">Eksportér data ↓</button>${!isDemo()?'<button type="button" class="text-link" data-action="reset-data">Gendan standarddata</button>':''}</div>`;}
 function insightPanel(){
   const tabs=`<div class="dialog-tabs" role="tablist" aria-label="Porteføljeindsigt">${[['overview','Overblik'],['returns','Afkast'],['data','Data & metode']].map(([id,title])=>`<button role="tab" type="button" class="dialog-tab" id="tab-${id}" aria-selected="${detailTab===id}" aria-controls="insight-tabpanel" tabindex="${detailTab===id?0:-1}" data-insight-tab="${id}">${title}</button>`).join('')}</div>`;
   let content;
   if(detailTab==='data')content=dataPanel();
-  else if(detailTab==='returns')content=`<p>Afkast beregnet fra ${isDemo()?'de illustrative kurver':'de indlæste data'}. Perioderne slutter ${fmtDate(points().at(-1).date)}.</p><table class="data-table"><thead><tr><th scope="col">Periode</th><th scope="col">${state.fund}</th><th scope="col">Nasdaq-100</th></tr></thead><tbody>${Object.entries(PERIODS).map(([key,title])=>{const p=periodPoints(points(),key);return `<tr><td>${title}</td><td>${pct(returnBetween(p[0],p.at(-1)),true)}</td><td>${pct(returnBetween(p[0],p.at(-1),'benchmark'),true)}</td></tr>`}).join('')}</tbody></table>${sourceNote()}<div class="dialog-actions"><button class="outline-button" type="button" data-action="export">Eksportér valgt periode ↓</button><button class="outline-button" type="button" data-action="share">Kopiér link til visning ↗</button></div>`;
+  else if(detailTab==='returns')content=`<p>Afkast beregnet fra ${isDemo()?'kursdata':'de indlæste data'}. Perioderne slutter ${fmtDate(points().at(-1).date)}.</p><table class="data-table"><thead><tr><th scope="col">Periode</th><th scope="col">${state.fund}</th><th scope="col">Nasdaq-100</th></tr></thead><tbody>${Object.entries(PERIODS).map(([key,title])=>{const p=periodPoints(points(),key);return `<tr><td>${title}</td><td>${pct(returnBetween(p[0],p.at(-1)),true)}</td><td>${pct(returnBetween(p[0],p.at(-1),'benchmark'),true)}</td></tr>`}).join('')}</tbody></table>${sourceNote()}<div class="dialog-actions"><button class="outline-button" type="button" data-action="export">Eksportér valgt periode ↓</button><button class="outline-button" type="button" data-action="share">Kopiér link til visning ↗</button></div>`;
   else content=`<p class="intro">${FUNDS[state.fund].name}</p><p>${state.fund} er ${state.fund==='PMINDI'?'udbyttebetalende. Udbyttet udbetales til dig.':'akkumulerende. Afkastet geninvesteres i fonden.'} Se sammensætning, selskaber og de seneste analyser hos NewDeal Invest.</p>${linkCard('https://www.newdealinvest.dk/portefoljer','Selskaber og porteføljer','Se den aktuelle fondsinformation')}${linkCard('https://www.newdealinvest.dk/folgmed','Analyser og indsigter','Læs analyser, markedsopdateringer og nyheder')}${linkCard(FUNDS[state.fund].documents,'Dokumenter for '+state.fund,'PRIIP-KID, prospekt og risiko hos Fundmarket')}<div class="dialog-actions"><button type="button" class="outline-button" data-dialog="data">Se data & beregningsmetode</button><button type="button" class="outline-button" data-action="share">Del denne visning ↗</button></div>`;
   return tabs+`<div role="tabpanel" id="insight-tabpanel" aria-labelledby="tab-${detailTab}">${content}</div>`;
 }
@@ -314,9 +309,9 @@ root.addEventListener('click',event=>{
   const action=button.dataset.action;
   if(action==='copy-isin')copy(FUNDS[state.fund].isin,'ISIN kopieret: '+FUNDS[state.fund].isin);
   if(action==='share')copy(location.href,'Linket til denne visning er kopieret.');
-  if(action==='export'||action==='export-all')download(exportCSV(action==='export'?periodPoints(points(),state.period):points()),`${state.fund}-${isDemo()?'eksempeldata':'data'}-${action==='export'?state.period:'alle'}.csv`);
+  if(action==='export'||action==='export-all')download(exportCSV(action==='export'?periodPoints(points(),state.period):points()),`${state.fund}-data-${action==='export'?state.period:'alle'}.csv`);
   if(action==='template')download('date,total,benchmark,price\n2026-01-02,100,100,100\n2026-01-05,101,100.5,101\n',state.fund+'-skabelon.csv');
-  if(action==='reset-data'){delete imported[state.fund];storage.remove('ndi-data-'+state.fund);update();openDialog(dialogKind);toast('Mockuppets eksempeldata er gendannet.');}
+  if(action==='reset-data'){delete imported[state.fund];storage.remove('ndi-data-'+state.fund);update();openDialog(dialogKind);toast('Standarddata er gendannet.');}
 });
 $('#toggle-benchmark').addEventListener('click',()=>{state.benchmark=!state.benchmark;update()});
 dialog.addEventListener('keydown',event=>{
@@ -355,7 +350,6 @@ function start(){
     ready=true;update();
   }catch(error){
     const el=$('#chart-loading');el.classList.add('error');el.innerHTML='<div><p>Grafdata kunne ikke indlæses (data.js mangler).</p></div>';
-    $('#source-label').textContent='Data utilgængelige';
   }
 }
 start();
